@@ -39,12 +39,7 @@ Route::group(['middleware' => 'administrator', 'prefix' => 'manager', 'namespace
     Route::get('users/restore', 'UserController@restore')->name('restoreUser');
     Route::post('users/restore', 'UserController@restoreUsers')->name('restoreUsers');
 
-    //category-article
-    Route::get('category-article', 'ArticleController@index')->name('indexArticle');
-
     
-
-
 });
 
 //PERMISSION: USERS
@@ -68,6 +63,10 @@ Route::group(['middleware' => 'customer', 'prefix' => 'manager', 'namespace'=>'B
     Route::post('systems/change-language', 'SystemController@changeLanguage')->name('changeLanguage');
 
     //file manager
-    Route::get('image', 'UserController@image')->name('image');
+    Route::get('image', 'SystemController@imageManager')->name('imageManager');
+
+    //article
+    Route::get('article', 'ArticleController@index')->name('indexArticle');
+    Route::get('article/create', 'ArticleController@create')->name('createArticle');
 });
 

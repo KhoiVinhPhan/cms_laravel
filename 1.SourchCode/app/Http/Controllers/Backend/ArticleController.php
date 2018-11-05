@@ -16,28 +16,15 @@ class ArticleController extends Controller
     {
         $this->systemService = $systemService;
     }
+
     public function index()
     {
-        $category_articles = \DB::table('category_article')
-                ->select('category_article_id', 'name', 'parrent_id')
-                ->get();
-                // echo "<pre>";print_r($category_articles);exit;
+        return view('backend.article.index');
+    }
 
-        $arrParrent = array();
-        foreach ($category_articles as $key => $value) {
-            if($value->parrent_id == 0){
-                $arrParrent[$value->category_article_id] = $value->name;
-
-                foreach ($arrParrent as $key => $item) {
-                    if($value->parrent_id == $key){
-                        
-                    }
-                }
-                
-            }     
-        }
-        echo "<pre>";print_r($arrParrent);exit;
-        return view('backend.article.index', compact('category_articles'));
+    public function create()
+    {
+        return view('backend.article.create');
     }
 
     

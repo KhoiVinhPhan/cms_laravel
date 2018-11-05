@@ -58,4 +58,10 @@ class SystemController extends Controller
             return "error";
         }
     }
+
+    //file manager
+    public function imageManager()
+    {
+        return view('backend.systems.fileManager');
+    }
 }

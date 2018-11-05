@@ -204,8 +204,8 @@
                                     <p>{{ trans('language.menu-left-control') }}</p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
+                            <li class="nav-item has-treeview {{ request()->is('manager/article') ? 'menu-open' : '' }}">
+                                <a href="#" class="nav-link {{ request()->is('manager/article') ? 'active' : '' }}">
                                     <i class="nav-icon fa fa-pencil-square-o"></i>
                                     <p>
                                         {{ trans('language.menu-left-blog') }}
@@ -214,13 +214,13 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="" class="nav-link">
+                                        <a href="{{route('indexArticle')}}" class="nav-link {{ request()->is('manager/article') ? 'active' : '' }}">
                                             <i class="fa fa-angle-right nav-icon"></i>
                                             <p>{{ trans('language.menu-left-blog-list') }}</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('indexArticle')}}" class="nav-link">
+                                        <a href="" class="nav-link">
                                             <i class="fa fa-angle-right nav-icon"></i>
                                             <p>{{ trans('language.menu-left-blog-category') }}</p>
                                         </a>
@@ -240,7 +240,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('image')}}" class="nav-link">
+                                <a href="{{route('imageManager')}}" class="nav-link {{ request()->is('manager/image') ? 'active' : '' }}">
                                     <i class="nav-icon fa fa-picture-o"></i>
                                     <p>{{ trans('language.menu-left-filemanager') }}</p>
                                 </a>

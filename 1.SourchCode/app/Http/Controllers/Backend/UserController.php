@@ -163,16 +163,5 @@ class UserController extends Controller
             return redirect()->route('restoreUser');
         }
     }
-
-    public function image()
-    {
-        // if (Auth::user()->user_permission_id ==  1) {
-        //     Config::set('lfm.allow_multi_user', true);
-        // } else {
-            // \Config::set('lfm.allow_multi_user', false);
-        // }
-        // echo \Config::get('lfm.allow_multi_user');
-        return view('vendor.laravel-filemanager.index');
-    }
    
 }
