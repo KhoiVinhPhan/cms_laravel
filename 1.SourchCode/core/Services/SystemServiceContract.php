@@ -1,0 +1,10 @@
+<?php
+
+namespace Core\Services;
+
+interface SystemServiceContract
+{
+    public function pagination($input);
+    public function colors($input);
+    public function changeLanguage($input);
+}
