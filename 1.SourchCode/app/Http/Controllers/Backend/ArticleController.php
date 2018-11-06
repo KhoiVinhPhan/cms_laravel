@@ -4,17 +4,17 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Core\Services\SystemServiceContract;
+use Core\Services\ArticleServiceContract;
 use Auth;
 use Session;
 
 class ArticleController extends Controller
 {
-	protected $systemService;
+	protected $articleService;
 
-	public function __construct(SystemServiceContract $systemService)
+	public function __construct(ArticleServiceContract $articleService)
     {
-        $this->systemService = $systemService;
+        $this->articleService = $articleService;
     }
 
     public function index()
@@ -29,23 +29,10 @@ class ArticleController extends Controller
 
     public function category()
     {
-        $data = \DB::table('category_article')->select('*')->get()->toArray();
+        $categorys = $this->articleService->category();
+        // echo "<pre>";print_r($categorys);exit;
+        return view('backend.article.category', compact('categorys'));
         
-        $arrParrent = array();
-        foreach ($data as $key => $value) {
-
-            if($value->parrent_id == 0){
-                 $arrParrent[] = array(
-                                    'category_article_id'    => $value->category_article_id,
-                                    'name'       => $value->name,
-                                    'parrent_id'    => $value->parrent_id,
-                                );
-            }
-           
-        }
-
-        echo "<pre>";print_r($arrParrent);exit;
     }
-
     
 }

@@ -12,6 +12,11 @@ use Core\Repositories\SystemRepositoryContract;
 use Core\Services\SystemService;
 use Core\Services\SystemServiceContract;
 
+use Core\Repositories\ArticleRepository;
+use Core\Repositories\ArticleRepositoryContract;
+use Core\Services\ArticleService;
+use Core\Services\ArticleServiceContract;
+
 class CoreServiceProvider extends ServiceProvider
 {
     /**
@@ -35,5 +40,8 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->bind(SystemRepositoryContract::class, SystemRepository::class);
         $this->app->bind(SystemServiceContract::class, SystemService::class);
+
+        $this->app->bind(ArticleRepositoryContract::class, ArticleRepository::class);
+        $this->app->bind(ArticleServiceContract::class, ArticleService::class);
     }
 }
