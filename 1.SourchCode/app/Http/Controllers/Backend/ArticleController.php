@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Core\Services\ArticleServiceContract;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use Session;
 
@@ -29,8 +30,8 @@ class ArticleController extends Controller
 
     public function category()
     {
+        $categorys = DB::table('category_article')->select('*')->get()->toArray();
         $categorys = $this->articleService->category();
-        // echo "<pre>";print_r($categorys);exit;
         return view('backend.article.category', compact('categorys'));
         
     }

@@ -204,8 +204,8 @@
                                     <p>{{ trans('language.menu-left-control') }}</p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview {{ request()->is('manager/article') ? 'menu-open' : '' }}">
-                                <a href="#" class="nav-link {{ request()->is('manager/article') ? 'active' : '' }}">
+                            <li class="nav-item has-treeview {{ request()->is('manager/article') || request()->is('manager/article/category') ? 'menu-open' : '' }}">
+                                <a href="#" class="nav-link {{ request()->is('manager/article') || request()->is('manager/article/category') ? 'active' : '' }}">
                                     <i class="nav-icon fa fa-pencil-square-o"></i>
                                     <p>
                                         {{ trans('language.menu-left-blog') }}
@@ -220,7 +220,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="" class="nav-link">
+                                        <a href="{{route('categoryArticle')}}" class="nav-link {{ request()->is('manager/article/category') ? 'active' : '' }}">
                                             <i class="fa fa-angle-right nav-icon"></i>
                                             <p>{{ trans('language.menu-left-blog-category') }}</p>
                                         </a>
