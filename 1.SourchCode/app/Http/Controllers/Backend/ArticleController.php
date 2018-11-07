@@ -30,10 +30,14 @@ class ArticleController extends Controller
 
     public function category()
     {
-        $categorys = DB::table('category_article')->select('*')->get()->toArray();
         $categorys = $this->articleService->category();
         return view('backend.article.category', compact('categorys'));
-        
+    }
+
+    public function createCategory()
+    {
+        $categorys = $this->articleService->category();
+        return view('backend.article.create-category', compact('categorys'));
     }
     
 }

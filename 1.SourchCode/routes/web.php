@@ -69,5 +69,6 @@ Route::group(['middleware' => 'customer', 'prefix' => 'manager', 'namespace'=>'B
     Route::get('article', 'ArticleController@index')->name('indexArticle');
     Route::get('article/create', 'ArticleController@create')->name('createArticle');
     Route::get('article/category', 'ArticleController@category')->name('categoryArticle');
+    Route::get('article/category/create', 'ArticleController@createCategory')->name('createCategory');
 });
 

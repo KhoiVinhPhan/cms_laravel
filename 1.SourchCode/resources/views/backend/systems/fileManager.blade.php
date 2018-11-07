@@ -23,7 +23,7 @@
 <!-- /.content-header -->
 <div class="container-fluid">
     <div class="col-sm-12">
-        <iframe src="/laravel-filemanager" style="width: 100%; height: 500px; overflow: hidden; border: none;"></iframe>
+        <iframe src="/laravel-filemanager?type=Images" style="width: 100%; height: 500px; overflow: hidden; border: none;"></iframe>
     </div>
 </div>
 @endsection

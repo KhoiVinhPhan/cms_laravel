@@ -41,6 +41,12 @@
 
     <!-- File manager -->
     <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+
+    <!-- ckeditor full -->
+    <!-- <script src="{{ asset('ckeditor_4.11_full/ckeditor/ckeditor.js') }}"></script> -->
+    <!-- ckeditor standard -->
+    <script src="{{ asset('ckeditor_4.11_standard/ckeditor/ckeditor.js') }}"></script>
+    
 </head>
 
 <!-- setting color -->
@@ -67,15 +73,6 @@
     } else {
         \App::setLocale($language->language);
     }
-?>
-
-<!-- setting file manager -->
-<?php
-    // if (Auth::user()->user_permission_id ==  1) {
-    //     \Config::set('lfm.allow_multi_user', true);
-    // } else {
-    //     \Config::set('lfm.allow_multi_user', false);
-    // }
 ?>
 <body class="{{$sidebar}}" id="toggleSidebar">
     <div class="wrapper">
@@ -478,6 +475,7 @@
             });
         }
     </script>
+    
 </body>
 
 </html>
