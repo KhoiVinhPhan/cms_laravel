@@ -42,11 +42,26 @@
     <!-- File manager -->
     <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
 
+    <!-- tinymce -->
+    <script src="{{asset('tinymce/js/tinymce/tinymce.min.js')}}"></script>
+    <script>
+        tinymce.init({
+        selector: '.timymce',
+        theme: 'modern',
+            plugins: [
+                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'save table contextmenu directionality emoticons template paste textcolor'
+            ],
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
+        });
+    </script>
+
     <!-- ckeditor full -->
-    <!-- <script src="{{ asset('ckeditor_4.11_full/ckeditor/ckeditor.js') }}"></script> -->
+    <script src="{{ asset('ckeditor_4.11_full/ckeditor/ckeditor.js') }}"></script>
     <!-- ckeditor standard -->
-    <script src="{{ asset('ckeditor_4.11_standard/ckeditor/ckeditor.js') }}"></script>
-    
+    <!-- <script src="{{ asset('ckeditor_4.11_standard/ckeditor/ckeditor.js') }}"></script> -->
+
 </head>
 
 <!-- setting color -->
@@ -356,7 +371,6 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
     
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
