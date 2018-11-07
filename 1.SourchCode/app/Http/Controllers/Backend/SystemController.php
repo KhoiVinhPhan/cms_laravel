@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Core\Services\SystemServiceContract;
 use App\Models\SystemPagination;
 use App\Models\SystemColor;
+use App\Models\SystemEditor;
 use Auth;
 use Session;
 
@@ -21,8 +22,9 @@ class SystemController extends Controller
     public function index()
     {
         $systemPagination = SystemPagination::where('user_id', Auth::user()->user_id)->first();
-    	$systemColor = SystemColor::where('user_id', Auth::user()->user_id)->first();
-        return view('backend.systems.index', compact('systemPagination', 'systemColor'));
+        $systemColor = SystemColor::where('user_id', Auth::user()->user_id)->first();
+    	$systemEditor = SystemEditor::where('user_id', Auth::user()->user_id)->first();
+        return view('backend.systems.index', compact('systemPagination', 'systemColor', 'systemEditor'));
     }
 
     //change pagination
@@ -47,10 +49,9 @@ class SystemController extends Controller
         }
     }
 
-    //chaneg language
+    //change language
     public function changeLanguage(Request $request)
     {
-
         $input = $request->all();
         if($this->systemService->changeLanguage($input)) {
             return "success";
@@ -63,5 +64,16 @@ class SystemController extends Controller
     public function imageManager()
     {
         return view('backend.systems.fileManager');
+    }
+
+    //change editor
+    public function editor(Request $request)
+    {
+        $input = $request->all();
+        if($this->systemService->editor($input)) {
+            return "success";
+        }else {
+            return "error";
+        }
     }
 }

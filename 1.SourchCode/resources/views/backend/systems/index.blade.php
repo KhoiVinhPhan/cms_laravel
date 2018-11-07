@@ -74,6 +74,48 @@
                     </div>
                 </form>
                 <!-- end pagination -->
+
+                <!-- start editor -->
+                <form action="" method="POST" id="formEditor" accept-charset="utf-8">
+                    @csrf
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Cấu hình trình soạn thảo</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <label>Chọn trình soạn thảo</label>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="radio">
+                                        <label><input <?php if($systemEditor->name == 'ckeditor'){echo 'checked';} ?> type="radio" id="radio_ckeditor" name="editor" value="ckeditor" > Ckeditor</label>
+                                        <img src="{{asset('image_default/ckeditor.png')}}" width="100%" height="200px">
+                                    </div>
+                                    <div id="version-ckeditor" style="display: none">
+                                        <label>Version: </label>
+                                        <label class="radio-inline"><input <?php if($systemEditor->version_ckeditor == 'full'){echo 'checked';} ?> type="radio" name="versionCkeditor" value="full"> Full</label>
+                                        <label class="radio-inline"><input <?php if($systemEditor->version_ckeditor == 'standard'){echo 'checked';} ?> type="radio" name="versionCkeditor" value="standard"> Standard</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="radio">
+                                        <label><input <?php if($systemEditor->name == 'tinymce'){echo 'checked';} ?> type="radio" id="radio_tinymce" name="editor" value="tinymce"> Tinymce</label>
+                                        <img src="{{asset('image_default/tinymce.png')}}" width="100%" height="200px">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-sm btn-outline-info btn-flat pull-right" id="btnEditor">Thay đổi</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- end editor -->
             </div>
             <div class="col-sm-6">
                 <!-- start color -->
@@ -198,6 +240,28 @@
             });
         });
 
+        //save color
+        $('#btnEditor').click(function(){
+            var formData = $('#formEditor').serialize();
+            $.ajax({
+                type: 'POST',
+                url: '/manager/systems/editor',
+                data: formData,
+                success: function(result){
+                    console.log(result);
+                    //message
+                    if(result == 'success')
+                        toastr.success('Thay đổi trình soạn thảo thành công');
+                    else
+                        toastr.error('Thay đổi trình soạn thảo không thành công');
+                },
+                error: function(result){
+                    console.log(result);
+                    toastr.error('Lỗi hệ thống');
+                }
+            });
+        });
+
         //checkbox toggle sidebar
         $('#sidebar').change(function () {
             if ($('#sidebar').prop( "checked" ) == false) {
@@ -206,6 +270,20 @@
                 $('#toggleSidebar').attr('class', 'sidebar-mini sidebar-collapse'); 
             }
         });
+
+        //check editor
+        $('input:radio[name="editor"]').change(function(){
+            if($(this).val() == 'ckeditor'){
+                $('#version-ckeditor').attr('style', 'display: show');
+            }
+            if($(this).val() == 'tinymce'){
+                $('#version-ckeditor').attr('style', 'display: none');
+            }
+        });
+
+        if ($("#radio_ckeditor").prop("checked")) {
+            $('#version-ckeditor').attr('style', 'display: show');
+        }
 
     });
 

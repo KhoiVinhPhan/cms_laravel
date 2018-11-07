@@ -42,26 +42,6 @@
     <!-- File manager -->
     <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
 
-    <!-- tinymce -->
-    <script src="{{asset('tinymce/js/tinymce/tinymce.min.js')}}"></script>
-    <script>
-        tinymce.init({
-        selector: '.timymce',
-        theme: 'modern',
-            plugins: [
-                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
-                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-                'save table contextmenu directionality emoticons template paste textcolor'
-            ],
-            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
-        });
-    </script>
-
-    <!-- ckeditor full -->
-    <script src="{{ asset('ckeditor_4.11_full/ckeditor/ckeditor.js') }}"></script>
-    <!-- ckeditor standard -->
-    <!-- <script src="{{ asset('ckeditor_4.11_standard/ckeditor/ckeditor.js') }}"></script> -->
-
 </head>
 
 <!-- setting color -->
@@ -436,6 +416,72 @@
             "hideMethod": "fadeOut"
         }
     </script>
+    
+    <!-- start setting editor -->
+    <?php
+        $editor = DB::table('system_editor')->select('*')->where('user_id', '=', Auth::user()->user_id)->first();
+        if (empty($editor) || $editor->name == 'ckeditor') { ?>
+            <?php 
+                if (empty($editor) || $editor->version_ckeditor == 'full') { ?>
+                    <!-- ckeditor full -->
+                    <script src="{{ asset('ckeditor_4.11_full/ckeditor/ckeditor.js') }}"></script>
+                <?php } else { ?>
+                    <!-- ckeditor standard -->
+                    <script src="{{ asset('ckeditor_4.11_standard/ckeditor/ckeditor.js') }}"></script>
+                <?php }
+            ?>
+            <script>
+                try{
+                    CKEDITOR.replace('ckeditor', {
+                        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                        filebrowserBrowseUrl: '/laravel-filemanager?type=Files'
+                    });
+                    CKEDITOR.add
+                }catch{
+
+                }
+            </script>
+        <?php } else { ?>
+            <!-- tinymce -->
+            <script src="{{asset('tinymce/js/tinymce/tinymce.min.js')}}"></script>
+            <script>
+                var editor_config = {
+                    path_absolute : "/",
+                    selector: ".timymce",
+                    plugins: [
+                        'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                        'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                        'save table contextmenu directionality emoticons template paste textcolor'
+                    ],
+                    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons',
+                    relative_urls: false,
+                    file_browser_callback : function(field_name, url, type, win) {
+                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+                        var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+                        if (type == 'image') {
+                            cmsURL = cmsURL + "&type=Images";
+                        } else {
+                            cmsURL = cmsURL + "&type=Files";
+                        }
+
+                        tinyMCE.activeEditor.windowManager.open({
+                            file : cmsURL,
+                            title : 'Filemanager',
+                            width : x * 0.8,
+                            height : y * 0.8,
+                            resizable : "yes",
+                            close_previous : "no"
+                        });
+                    }
+                };
+                tinymce.init(editor_config);
+            </script>
+        <?php }
+    ?>
+    <!-- end setting editor -->
+
     <script>
         $(document).ready(function(){
             //select2

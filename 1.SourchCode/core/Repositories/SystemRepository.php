@@ -106,4 +106,36 @@ class SystemRepository implements SystemRepositoryContract
         }
     }
 
+    //change editor
+    public function editor($input)
+    {
+        DB::beginTransaction();
+        try{
+            $editor = DB::table('system_editor')->select('*')->where('user_id', '=', Auth::user()->user_id)->first();
+            if (empty($editor)) {
+                //create
+                DB::table('system_editor')
+                    ->insert([
+                        'name'              => $input['editor'],
+                        'version_ckeditor'  => $input['versionCkeditor'],
+                        'user_id'           => Auth::user()->user_id,
+                    ]);
+            } else {
+                //update
+                DB::table('system_editor')
+                    ->where('user_id', '=', $editor->user_id)
+                    ->update([
+                        'name'              => $input['editor'],
+                        'version_ckeditor'  => $input['versionCkeditor'],
+                        'user_id'           => Auth::user()->user_id,
+                    ]);
+            }
+            DB::commit();
+            return true;
+        } catch(\Exception $e) {
+            DB::rollback();
+            return false;
+        }
+    }
+
 }

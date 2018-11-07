@@ -61,6 +61,7 @@ Route::group(['middleware' => 'customer', 'prefix' => 'manager', 'namespace'=>'B
     Route::post('systems/pagination', 'SystemController@pagination')->name('pagination');
     Route::post('systems/colors', 'SystemController@colors')->name('colors');
     Route::post('systems/change-language', 'SystemController@changeLanguage')->name('changeLanguage');
+    Route::post('systems/editor', 'SystemController@editor')->name('indexEditor');
 
     //file manager
     Route::get('image', 'SystemController@imageManager')->name('imageManager');

@@ -62,23 +62,10 @@
     				<div class="col-sm-6">
     					<div class="form-group">
                             <label>Chi tiết:</label>
-                            <textarea name="txtContent" class="form-control " id="ckeditor1"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Chi tiết:</label>
-                            <textarea name="txtContent" class="form-control" id="ckeditor2"></textarea>
+                            <textarea name="txtContent" class="form-control timymce" id="ckeditor"></textarea>
                         </div>
                         
     				</div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Chi tiết:</label>
-                            <textarea name="txtContent" class="form-control timymce"></textarea>
-                        </div>
-                        
-                    </div>
     			</div>
     		</div>
     		<div class="card-footer">
@@ -89,15 +76,5 @@
     </div>
 </div>
 </form>
-<script>
-    CKEDITOR.replace('ckeditor1', {
-        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-        filebrowserBrowseUrl: '/laravel-filemanager?type=Files'
-    });
-    CKEDITOR.add
-    CKEDITOR.replace('ckeditor2', {
-        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-        filebrowserBrowseUrl: '/laravel-filemanager?type=Files'
-    });
-</script>
+
 @endsection

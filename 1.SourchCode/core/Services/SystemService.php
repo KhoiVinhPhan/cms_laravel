@@ -28,4 +28,9 @@ class SystemService implements SystemServiceContract
         return $this->systemRepository->changeLanguage($input);
     }
 
+    public function editor($input)
+    {
+        return $this->systemRepository->editor($input);
+    }
+
 }
