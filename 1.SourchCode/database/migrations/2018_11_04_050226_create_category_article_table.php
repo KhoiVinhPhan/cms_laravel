@@ -16,7 +16,8 @@ class CreateCategoryArticleTable extends Migration
         Schema::create('category_article', function (Blueprint $table) {
             $table->increments('category_article_id');
             $table->string('name');
-            $table->longtext('description');
+            $table->string('slug');
+            $table->longtext('description')->nullable();
             $table->integer('parrent_id');
             $table->integer('user_id_maked')->nullable();
             $table->integer('user_id_deleted')->nullable();

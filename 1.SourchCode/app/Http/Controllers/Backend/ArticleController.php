@@ -8,6 +8,7 @@ use Core\Services\ArticleServiceContract;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Session;
+use App\Models\CategoryArticle;
 
 class ArticleController extends Controller
 {
@@ -38,6 +39,37 @@ class ArticleController extends Controller
     {
         $categorys = $this->articleService->category();
         return view('backend.article.create-category', compact('categorys'));
+    }
+
+    public function storeCategory(Request $request)
+    {
+        $input = $request->all();
+        if($this->articleService->storeCategory($input)){
+            Session::flash('success', 'Thêm danh mục thành công');
+            return redirect()->route('categoryArticle');
+        }else{
+            Session::flash('error', 'Thêm danh mục không thành công');
+            return redirect()->route('createCategory');
+        }
+    }
+
+    public function editCategory($id)
+    {
+        $category = CategoryArticle::find($id);
+        $categorys = $this->articleService->category();
+        return view('backend.article.edit-category', compact('categorys', 'category'));
+    }
+
+    public function updateCategory(Request $request)
+    {
+        $input = $request->all();
+        if($this->articleService->updateCategory($input)){
+            Session::flash('success', 'Cập nhật danh mục thành công');
+            return redirect()->route('categoryArticle');
+        }else{
+            Session::flash('error', 'Cập nhật danh mục không thành công');
+            return redirect()->route('categoryArticle');
+        }
     }
     
 }

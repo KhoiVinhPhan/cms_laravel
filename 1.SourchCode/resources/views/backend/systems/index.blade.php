@@ -93,18 +93,18 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="radio">
-                                        <label><input <?php if($systemEditor->name == 'ckeditor'){echo 'checked';} ?> type="radio" id="radio_ckeditor" name="editor" value="ckeditor" > Ckeditor</label>
+                                        <label><input <?php if(!empty($systemEditor) && $systemEditor->name == 'ckeditor'){echo 'checked';}else{echo "checked";} ?> type="radio" id="radio_ckeditor" name="editor" value="ckeditor" > Ckeditor</label>
                                         <img src="{{asset('image_default/ckeditor.png')}}" width="100%" height="200px">
                                     </div>
                                     <div id="version-ckeditor" style="display: none">
                                         <label>Version: </label>
-                                        <label class="radio-inline"><input <?php if($systemEditor->version_ckeditor == 'full'){echo 'checked';} ?> type="radio" name="versionCkeditor" value="full"> Full</label>
-                                        <label class="radio-inline"><input <?php if($systemEditor->version_ckeditor == 'standard'){echo 'checked';} ?> type="radio" name="versionCkeditor" value="standard"> Standard</label>
+                                        <label class="radio-inline"><input <?php if(!empty($systemEditor) && $systemEditor->version_ckeditor == 'full'){echo 'checked';}else{echo "checked";} ?> type="radio" name="versionCkeditor" value="full"> Full</label>
+                                        <label class="radio-inline"><input <?php if(!empty($systemEditor) && $systemEditor->version_ckeditor == 'standard'){echo 'checked';} ?> type="radio" name="versionCkeditor" value="standard"> Standard</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="radio">
-                                        <label><input <?php if($systemEditor->name == 'tinymce'){echo 'checked';} ?> type="radio" id="radio_tinymce" name="editor" value="tinymce"> Tinymce</label>
+                                        <label><input <?php if(!empty($systemEditor) && $systemEditor->name == 'tinymce'){echo 'checked';} ?> type="radio" id="radio_tinymce" name="editor" value="tinymce"> Tinymce</label>
                                         <img src="{{asset('image_default/tinymce.png')}}" width="100%" height="200px">
                                     </div>
                                 </div>
