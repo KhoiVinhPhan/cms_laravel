@@ -98,7 +98,7 @@
                                     </div>
                                     <div id="version-ckeditor" style="display: none">
                                         <label>Version: </label>
-                                        <label class="radio-inline"><input <?php if(!empty($systemEditor) && $systemEditor->version_ckeditor == 'full'){echo 'checked';} ?> type="radio" name="versionCkeditor" value="full"> Full</label>
+                                        <label class="radio-inline"><input <?php if(!empty($systemEditor) && $systemEditor->version_ckeditor == 'full'){echo 'checked';}else{echo "checked";} ?> type="radio" name="versionCkeditor" value="full"> Full</label>
                                         <label class="radio-inline"><input <?php if(!empty($systemEditor) && $systemEditor->version_ckeditor == 'standard'){echo 'checked';} ?> type="radio" name="versionCkeditor" value="standard"> Standard</label>
                                     </div>
                                 </div>
