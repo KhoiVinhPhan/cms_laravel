@@ -18,4 +18,14 @@ class ArticleService implements ArticleServiceContract
         return $this->articleRepository->category();
     }
 
+    public function storeCategory($input)
+    {
+        return $this->articleRepository->storeCategory($input);
+    }
+
+    public function updateCategory($input)
+    {
+        return $this->articleRepository->updateCategory($input);
+    }
+
 }
