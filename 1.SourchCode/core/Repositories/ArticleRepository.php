@@ -17,17 +17,17 @@ class ArticleRepository implements ArticleRepositoryContract
     //create category
     public function storeCategory($input)
     {
-    	DB::beginTransaction();
+        DB::beginTransaction();
         try{
             $data = array(
-               	'name'          => $input['category'],
-               	'description'   => $input['description'],
-               	'parrent_id'    => $input['category_parrent'],
-               	'user_id_maked' => Auth::user()->user_id
+                'name'          => $input['category'],
+                'description'   => $input['description'],
+                'parrent_id'    => $input['category_parrent'],
+                'user_id_maked' => Auth::user()->user_id
             );
             CategoryArticle::create($data);
-	        DB::commit();
-	        return true;
+            DB::commit();
+            return true;
         } catch(\Exception $e) {
             DB::rollback();
             return false;
@@ -37,17 +37,17 @@ class ArticleRepository implements ArticleRepositoryContract
     //update category
     public function updateCategory($input)
     {
-    	DB::beginTransaction();
+        DB::beginTransaction();
         try{
             $data = array(
-               	'name'          => $input['category'],
-               	'description'   => $input['description'],
-               	'parrent_id'    => $input['category_parrent'],
-               	'user_id_maked' => Auth::user()->user_id
+                'name'          => $input['category'],
+                'description'   => $input['description'],
+                'parrent_id'    => $input['category_parrent'],
+                'user_id_maked' => Auth::user()->user_id
             );
             CategoryArticle::find($input['category_article_id'])->update($data);
-	        DB::commit();
-	        return true;
+            DB::commit();
+            return true;
         } catch(\Exception $e) {
             DB::rollback();
             return false;
