@@ -138,4 +138,44 @@ class SystemRepository implements SystemRepositoryContract
         }
     }
 
+    //update system general
+    public function updateConfigSystem($input)
+    {
+        DB::beginTransaction();
+        try{
+            
+            $data = DB::table('system_general')->select('*')->first();
+            if (empty($data)) {
+                //insert
+                DB::table('system_general')
+                    ->insert([
+                        'image_logo'    => $input['image_logo'],
+                        'title_logo'    => $input['title_logo'],
+                        'user_id_maked' => Auth::user()->user_id
+                    ]);
+            } else {
+                //update
+                DB::table('system_general')
+                    ->where('id', '=', $data->id)
+                    ->update([
+                        'image_logo'      => $input['image_logo'],
+                        'title_logo'      => $input['title_logo'],
+                        'user_id_updated' => Auth::user()->user_id
+                    ]);
+            }
+            DB::commit();
+            return true;
+        } catch(\Exception $e) {
+            DB::rollback();
+            return false;
+        }
+    }
+
+    //get data system general
+    public function getDataConfigSystem()
+    {
+        $data = DB::table('system_general')->select('*')->first();
+        return $data;
+    }
+
 }

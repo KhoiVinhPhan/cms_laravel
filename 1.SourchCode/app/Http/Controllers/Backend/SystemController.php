@@ -76,4 +76,24 @@ class SystemController extends Controller
             return "error";
         }
     }
+
+    //show config system
+    public function configSystem()
+    {
+        $data = $this->systemService->getDataConfigSystem();
+        return view('backend.systems.config', compact('data'));
+    }
+
+    //update config system
+    public function updateConfigSystem(Request $request)
+    {
+        $input = $request->all();
+        if($this->systemService->updateConfigSystem($input)){
+            Session::flash('success', 'Cập nhật thành công');
+            return redirect()->route('configSystem');
+        }else{
+            Session::flash('error', 'Cập nhật không thành công');
+            return redirect()->route('configSystem');
+        }
+    }
 }

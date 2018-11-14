@@ -31,6 +31,16 @@ class SystemService implements SystemServiceContract
     public function editor($input)
     {
         return $this->systemRepository->editor($input);
+    } 
+
+    public function updateConfigSystem($input)
+    {
+        return $this->systemRepository->updateConfigSystem($input);
+    }
+
+    public function getDataConfigSystem()
+    {
+        return $this->systemRepository->getDataConfigSystem();
     }
 
 }

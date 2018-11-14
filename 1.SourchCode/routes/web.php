@@ -39,6 +39,10 @@ Route::group(['middleware' => 'administrator', 'prefix' => 'manager', 'namespace
     Route::get('users/restore', 'UserController@restore')->name('restoreUser');
     Route::post('users/restore', 'UserController@restoreUsers')->name('restoreUsers');
 
+    //config
+    Route::get('config', 'SystemController@configSystem')->name('configSystem');
+    Route::post('config', 'SystemController@updateConfigSystem')->name('updateConfigSystem');
+
     
 });
 

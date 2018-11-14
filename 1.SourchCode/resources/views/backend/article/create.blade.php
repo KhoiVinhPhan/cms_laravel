@@ -108,7 +108,7 @@
                         <h3 class="card-title">Hình đại diện</h3>
                     </div>
                     <div class="card-body">
-                        <img src="{{ url('image_default/ckeditor.png') }}" id="holder" style="width: 100%;height: auto">
+                        <img src="{{ url('image_default/logo.png') }}" id="holder" style="width: 100%;height: auto">
                         <input hidden id="thumbnail" class="form-control" type="text" name="filePathImage">
                         <input type="button" id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary btn-flat btn-sm btn-block" value="Chọn hình">
                     </div>
@@ -118,8 +118,5 @@
     </div>
 </section>
 <script>
-    $(document).ready(function(){
-        $('#lfm').filemanager('image');
-    });
 </script>
 @endsection

@@ -69,6 +69,11 @@
         \App::setLocale($language->language);
     }
 ?>
+
+<!-- setting system general -->
+<?php
+    $systemGeneral = DB::table('system_general')->select('*')->first(); 
+?>
 <body class="{{$sidebar}}" id="toggleSidebar">
     <div class="wrapper">
 
@@ -179,8 +184,8 @@
         <aside id="colorActive" class="{{$colorActive}}">
             <!-- Brand Logo -->
             <a href="{{ route('profile') }}" class="{{$colorLogo}}" id="logo">
-                <img src="{{ asset('image_user/no_image_user.png') }}" alt="Logo" class="brand-image elevation-3" style="opacity: .8; width: 40px; height: 40px;">
-                <span class="brand-text font-weight-light">CMS Laravel</span>
+                <img src="{{url('')}}<?php if(!empty($systemGeneral->image_logo)){echo $systemGeneral->image_logo;}else{echo "/image_default/logo.png";} ?>" alt="Logo" class="brand-image elevation-3" style="opacity: .8; width: 40px; height: 40px;">
+                <span class="brand-text font-weight-light"><?php if(!empty($systemGeneral->title_logo)){echo $systemGeneral->title_logo;}else{echo "LOGO IMAGE";} ?></span>
                
             </a>
             
@@ -256,8 +261,8 @@
                                     <p>{{ trans('language.menu-left-page') }}</p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview {{ request()->is('manager/users') || request()->is('manager/users/create') ? 'menu-open' : '' }}">
-                                <a href="#" class="nav-link {{ request()->is('manager/users') || request()->is('manager/users/create') ? 'active' : '' }}">
+                            <li class="nav-item has-treeview {{ request()->is('manager/users') || request()->is('manager/users/create') || request()->is('manager/config') ? 'menu-open' : '' }}">
+                                <a href="#" class="nav-link {{ request()->is('manager/users') || request()->is('manager/users/create') || request()->is('manager/config') ? 'active' : '' }}">
                                     <i class="nav-icon fa fa-pie-chart"></i>
                                     <p>
                                         {{ trans('language.menu-left-manager') }}
@@ -269,6 +274,12 @@
                                         <a href="{{ route('indexUsers') }}" class="nav-link {{ request()->is('manager/users') || request()->is('manager/users/create') ? 'active' : '' }}">
                                             <i class="fa fa-angle-right nav-icon"></i>
                                             <p>{{ trans('language.menu-left-manager-user') }}</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('configSystem') }}" class="nav-link {{ request()->is('manager/config') ? 'active' : '' }}">
+                                            <i class="fa fa-angle-right nav-icon"></i>
+                                            <p>{{ trans('language.menu-left-manager-config') }}</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -510,6 +521,11 @@
             setTimeout(function(){
                 $(".message").remove();
             }, 3000);
+
+            //choice filemanger image
+            $(document).ready(function(){
+                $('#lfm').filemanager('image');
+            });
 
         });
 
