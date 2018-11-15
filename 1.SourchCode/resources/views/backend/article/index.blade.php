@@ -40,24 +40,14 @@
             <div class="card-body table-responsive p-0">
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
-                        <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
-                        </tr>
-                    </thead>
-                    
-                    <tfoot>
-                        <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
-                        </tr>
-                    </tfoot>
+                        <!-- <th>stt</th> -->
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>slug</th>
+                        <th>des</th>
+                        <th>action</th>
+                        <th>stt</th>
+                    </thead>    
                 </table>
             </div>
             <!-- /.card-body -->
@@ -77,11 +67,13 @@
                         "data":{ _token: "{{csrf_token()}}"}
                    },
             "columns": [
-                { "data": "id" },
+                // { "data": "stt" },
+                { "data": "article_id" },
                 { "data": "title" },
-                { "data": "body" },
-                { "data": "created_at" },
-                { "data": "options" }
+                { "data": "slug" },
+                { "data": "description" },
+                { "data": "options" },
+                { "data": "stt" },
             ]    
 
         });
