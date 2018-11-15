@@ -71,5 +71,32 @@ class ArticleController extends Controller
             return redirect()->route('categoryArticle');
         }
     }
+
+    public function allArticle(Request $request)
+    {
+        $input = $request->all();
+
+        $columns = array( 
+                            0 =>'id', 
+                            1 =>'title',
+                            2=> 'body',
+                            3=> 'created_at',
+                            4=> 'id',
+                        );
+        $data = array(
+            'id'=>'asfsadf',
+            'title'=>'asfsadf',
+            'body'=>'asfsadf',
+            'created_at'=>'asfsadf',
+            'id'=>'asfsadf',
+        );
+        $json_data = array(
+                        "draw"            => 1,  
+                        "recordsTotal"    => 20,  
+                        "recordsFiltered" => 20, 
+                        "data"            => $data
+                    );
+        echo json_encode($json_data); 
+    }
     
 }

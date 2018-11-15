@@ -71,7 +71,7 @@
             "processing": true,
             "serverSide": true,
             "ajax":{
-                        "url": "{{ url('allArticle') }}",
+                        "url": "{{ route('allArticle') }}",
                         "dataType": "json",
                         "type": "POST",
                         "data":{ _token: "{{csrf_token()}}"}
