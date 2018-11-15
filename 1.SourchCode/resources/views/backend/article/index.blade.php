@@ -32,7 +32,59 @@
 </div>
 <div class="container-fluid">
     <div class="col-sm-12">
-        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Hover Data Table</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Rendering engine</th>
+                            <th>Browser</th>
+                            <th>Platform(s)</th>
+                            <th>Engine version</th>
+                            <th>CSS grade</th>
+                        </tr>
+                    </thead>
+                    
+                    <tfoot>
+                        <tr>
+                            <th>Rendering engine</th>
+                            <th>Browser</th>
+                            <th>Platform(s)</th>
+                            <th>Engine version</th>
+                            <th>CSS grade</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#example2').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax":{
+                        "url": "{{ url('allArticle') }}",
+                        "dataType": "json",
+                        "type": "POST",
+                        "data":{ _token: "{{csrf_token()}}"}
+                   },
+            "columns": [
+                { "data": "id" },
+                { "data": "title" },
+                { "data": "body" },
+                { "data": "created_at" },
+                { "data": "options" }
+            ]    
+
+        });
+    } );
+</script>
 @endsection

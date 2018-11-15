@@ -35,13 +35,15 @@
     <link rel="stylesheet" href="{{ asset('adminLTE3/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
     <!-- Notification -->
     <link href="{{ asset('toastr/build/toastr.css') }}" rel="stylesheet"/>
-
     <!-- jQuery -->
     <script src="{{ asset('adminLTE3/plugins/jquery/jquery.min.js') }}"></script>
-
     <!-- File manager -->
     <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
-
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('adminLTE3/plugins/datatables/dataTables.bootstrap4.css') }}">
+    <!-- DataTables -->
+    <script src="{{ asset('adminLTE3/plugins/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('adminLTE3/plugins/datatables/dataTables.bootstrap4.js') }}"></script>
 </head>
 
 <!-- setting color -->
@@ -371,6 +373,7 @@
     </script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('adminLTE3/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    
     <!-- Morris.js charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="{{ asset('adminLTE3/plugins/morris/morris.min.js') }}"></script>
