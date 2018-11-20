@@ -50,14 +50,14 @@
 <?php 
     $color = DB::table('system_color')->select('*')->where('user_id', '=', Auth::user()->user_id)->first();
     if (empty($color)) {
-        $menuTop = 'main-header navbar navbar-expand bg-white navbar-light border-bottom';
-        $colorLogo = 'brand-link';
-        $sidebar = 'hold-transition sidebar-mini';
+        $menuTop     = 'main-header navbar navbar-expand bg-white navbar-light border-bottom';
+        $colorLogo   = 'brand-link';
+        $sidebar     = 'hold-transition sidebar-mini';
         $colorActive = 'main-sidebar elevation-4 sidebar-dark-primary';
     } else{
-        $menuTop = $color->color_menu_top;
-        $colorLogo = $color->color_logo;
-        $sidebar = $color->sidebar;
+        $menuTop     = $color->color_menu_top;
+        $colorLogo   = $color->color_logo;
+        $sidebar     = $color->sidebar;
         $colorActive = $color->color_active_dark;
     }
 ?>
@@ -302,7 +302,6 @@
             <!-- /.sidebar -->
         </aside>
 
-        
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <div class="container-fluid">
@@ -344,7 +343,10 @@
                     @endif
                 </div>
             </div>
+
+            <!-- Start Content -->
             @yield('content')
+            <!-- End Content -->
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
@@ -524,11 +526,6 @@
             setTimeout(function(){
                 $(".message").remove();
             }, 3000);
-
-            //choice filemanger image
-            $(document).ready(function(){
-                $('#lfm').filemanager('image');
-            });
 
         });
 

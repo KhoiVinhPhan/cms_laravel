@@ -68,6 +68,8 @@
     </div>
 </section>
 <script>
-    
+    $(document).ready(function(){
+        $('#lfm').filemanager('image');
+    });
 </script>
 @endsection

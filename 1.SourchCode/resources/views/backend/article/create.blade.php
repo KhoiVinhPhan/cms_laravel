@@ -118,5 +118,9 @@
     </div>
 </section>
 <script>
+    //choice filemanger image
+    $(document).ready(function(){
+        $('#lfm').filemanager('image');
+    });
 </script>
 @endsection
