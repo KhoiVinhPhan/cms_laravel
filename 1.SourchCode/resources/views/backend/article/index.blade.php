@@ -33,9 +33,7 @@
 <div class="container-fluid">
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Hover Data Table</h3>
-            </div>
+           
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
                 <table id="example2" class="table table-bordered table-hover">

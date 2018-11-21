@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="{{ asset('adminLTE3/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
     <!-- Notification -->
     <link href="{{ asset('toastr/build/toastr.css') }}" rel="stylesheet"/>
+    <!-- app-backend -->
+    <link href="{{ asset('css/app-backend.css') }}" rel="stylesheet"/>
     <!-- jQuery -->
     <script src="{{ asset('adminLTE3/plugins/jquery/jquery.min.js') }}"></script>
     <!-- File manager -->
@@ -170,7 +172,7 @@
                         @endguest
                     </div>
                 </li>
-                <select onchange="changeLanguage()" id="language">
+                <select onchange="changeLanguage()" id="language" class="choice-language">
                     <option <?php if( !empty($language) && $language->language == 'vi'){echo 'selected';} ?> value="vi">Vietnames</option>
                     <option <?php if(!empty($language) && $language->language == 'en'){echo 'selected';} ?> value="en">Englishs</option>
                 </select>
