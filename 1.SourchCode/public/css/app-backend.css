@@ -1,4 +1,19 @@
+body{
+	font-family: Arial, Times New Roman, sans-serif;
+}
 .choice-language{
 	height: 30px;
     margin-top: 8px;
+}
+.modal-header {
+    background-color: #519D9E;
+    padding:9px 15px;
+    color:#FFF;
+    /*font-family:Verdana, sans-serif;*/
+    border-bottom:1px solid #eee;
+}
+.modal-footer {
+    background-color: #f4f7f7;
+    padding:9px 15px;
+    color:#FFF;
 }

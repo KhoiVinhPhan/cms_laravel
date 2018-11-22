@@ -56,6 +56,16 @@
                         </div>
                     </form>
 
+                    <div class="social-auth-links text-center mb-3">
+                        <p>- OR -</p>
+                        <a href="redirect/facebook" class="btn btn-block btn-primary">
+                            <i class="fa fa-facebook mr-2"></i> Đăng ký với facebook
+                        </a>
+                        <a href="javascript:;" class="btn btn-block btn-danger">
+                            <i class="fa fa-google-plus mr-2"></i> Đăng ký với google+
+                        </a>
+                    </div>
+
                     <p class="mb-1">
                         <a href="/">Trang chủ</a>
                     </p>
