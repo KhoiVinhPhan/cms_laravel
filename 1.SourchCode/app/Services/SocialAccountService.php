@@ -3,17 +3,17 @@
 namespace App\Services;
 
 use Laravel\Socialite\Contracts\User as ProviderUser;
-use App\SocialAccount;
-use App\User;
+use App\Models\SocialAccount;
+use App\Models\User;
 
 class SocialAccountService
 {
     public static function createOrGetUser(ProviderUser $providerUser, $social)
     {
+
         $account = SocialAccount::whereProvider($social)
             ->whereProviderUserId($providerUser->getId())
             ->first();
-
         if ($account) {
             return $account->user;
         } else {
@@ -23,19 +23,24 @@ class SocialAccountService
                 'provider' => $social
             ]);
             $user = User::whereEmail($email)->first();
-
             if (!$user) {
 
                 $user = User::create([
                     'email' => $email,
                     'name' => $providerUser->getName(),
                     'password' => $providerUser->getName(),
+                    'user_permission_id' => 3,
                 ]);
             }
 
-            $account->user()->associate($user);
-            $account->save();
-
+            SocialAccount::create([
+                'user_id' => $user->user_id,
+                'provider_user_id' => $providerUser->getId(),
+                'provider' => $social,
+            ]);
+            // echo "<pre>";print_r($providerUser->getId());exit;
+            // $account->user()->associate($user);
+            // $account->save();
             return $user;
         }
     }
