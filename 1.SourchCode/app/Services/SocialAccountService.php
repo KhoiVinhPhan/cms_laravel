@@ -14,8 +14,10 @@ class SocialAccountService
         $account = SocialAccount::whereProvider($social)
             ->whereProviderUserId($providerUser->getId())
             ->first();
+            
         if ($account) {
-            return $account->user;
+            $user = User::where('user_id', '=', $account->user_id)->first();
+            return $user;
         } else {
             $email = $providerUser->getEmail() ?? $providerUser->getNickname();
             $account = new SocialAccount([

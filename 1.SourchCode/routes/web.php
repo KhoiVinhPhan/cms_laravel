@@ -18,8 +18,10 @@ Route::get('dang-ky', 'Auth\RegisterController@showRegistrationForm')->name('reg
 Route::post('dang-ky', 'Auth\RegisterController@register');
 //  End Authentication Routes
 
+// Start Login social
 Route::get('/redirect/{social}', 'SocialAuthController@redirect');
 Route::get('/callback/{social}', 'SocialAuthController@callback');
+// End Login social
 
 //-----------------------------------------FRONT END-----------------------------------------------
 Route::get('/', function () {
