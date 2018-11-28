@@ -7,7 +7,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Font Awesome -->
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+        <link rel="stylesheet" href="{{ asset('adminLTE3/plugins/font-awesome/css/font-awesome.min.css') }}">
         <!-- Ionicons -->
         <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
         <!-- Theme style -->
@@ -21,6 +21,9 @@
         <div class="login-box">
             <div class="card">
                 <div class="card-body login-card-body">
+                    <div>
+                        <img src="{{url('image_default/mainlogo.png')}}" width="100%" height="40px">
+                    </div>
                     <p class="login-box-msg">Đăng nhập</p>
 
                     <form method="POST" action="{{ route('login') }}">
@@ -34,7 +37,7 @@
                             @endif
                         </div>
                         <div class="form-group has-feedback">
-                            <input id="password" type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password" name="password">
+                            <input id="password" type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Mật khẩu" name="password">
                             <!-- <span class="fa fa-lock form-control-feedback"></span> -->
                             @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
@@ -57,7 +60,7 @@
                     </form>
 
                     <div class="social-auth-links text-center mb-3">
-                        <p>- OR -</p>
+                        <p>- Hoặc -</p>
                         <a href="redirect/facebook" class="btn btn-block btn-primary">
                             <i class="fa fa-facebook mr-2"></i> Đăng nhập với facebook
                         </a>
@@ -67,10 +70,10 @@
                     </div>
 
                     <p class="mb-1">
-                        <a href="/">Trang chủ</a>
+                        <a href="/"><span class="fa fa-home"></span> Trang chủ</a>
                     </p>
                     <p class="mb-0">
-                        <a href="{{ route('register') }}" class="text-center">Đăng ký thành viên mới</a>
+                        <a href="{{ route('register') }}"><span class="fa fa-user-plus"></span> Đăng ký thành viên mới</a>
                     </p>
                 </div>
             </div>

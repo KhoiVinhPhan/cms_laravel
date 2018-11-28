@@ -7,7 +7,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Font Awesome -->
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+         <link rel="stylesheet" href="{{ asset('adminLTE3/plugins/font-awesome/css/font-awesome.min.css') }}">
         <!-- Ionicons -->
         <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
         <!-- Theme style -->
@@ -21,6 +21,9 @@
         <div class="register-box">
             <div class="card">
                 <div class="card-body register-card-body">
+                    <div>
+                        <img src="{{url('image_default/mainlogo.png')}}" width="100%" height="40px">
+                    </div>
                     <p class="login-box-msg">Đăng ký thành viên</p>
 
                     <form method="POST" action="{{ route('register') }}">
@@ -51,7 +54,6 @@
                         </div>
                         <div class="form-group has-feedback">
                             <input id="password-confirm" type="password" class="form-control" placeholder="Nhập lại mật khẩu" name="password_confirmation">
-                            <span class="fa fa-lock form-control-feedback"></span>
                         </div>
                         <div class="row">
                             <div class="col-8">
@@ -62,7 +64,7 @@
                         </div>
                     </form>
 
-                    <a href="{{ route('login') }}" class="text-center">Tôi đã có tài khoản</a>
+                    <a href="{{ route('login') }}"><span class="fa fa-user"></span> Tôi đã có tài khoản</a>
                 </div>
             </div>
         </div>
