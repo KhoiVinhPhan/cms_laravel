@@ -1,0 +1,8 @@
+# social login
+FACEBOOK_APP_ID = 492508421245223
+FACEBOOK_APP_SECRET = 46a0841bd6a5c96963cc982e87b2a87e
+FACEBOOK_APP_CALLBACK_URL = http://localhost:8000/callback/facebook
+
+GOOGLE_APP_ID = 1040020800100-rn3gpljutsh88o778vupe4p8vh7lh0q9.apps.googleusercontent.com
+GOOGLE_APP_SECRET = pMnwmekeeHWv1SX7ZyqIq29n
+GOOGLE_APP_CALLBACK_URL = http://localhost:8000/callback/google
