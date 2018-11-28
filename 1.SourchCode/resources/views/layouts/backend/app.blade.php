@@ -525,9 +525,7 @@
             })
 
             //message
-            setTimeout(function(){
-                $(".message").remove();
-            }, 3000);
+            $(".message").delay(3000).slideUp();
 
         });
 

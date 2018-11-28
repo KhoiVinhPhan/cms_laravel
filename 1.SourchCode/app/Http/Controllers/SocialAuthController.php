@@ -19,8 +19,11 @@ class SocialAuthController extends Controller
     public function callback($social)
     {
         $user = SocialAccountService::createOrGetUser(Socialite::driver($social)->user(), $social);
-        auth()->login($user);
-
-        return redirect()->to('/');
+        if ( !empty($user) ) {
+            auth()->login($user);
+            return redirect()->to('/');
+        } else {
+            return redirect()->route('login')->with(['error' => 'Lỗi xác thực hoặc tài khoản đang bị khóa.']);
+        }
     }
 }

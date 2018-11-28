@@ -67,8 +67,14 @@
                         <a href="redirect/google" class="btn btn-block btn-danger">
                             <i class="fa fa-google-plus mr-2"></i> Đăng nhập với google+
                         </a>
+                        <a href="redirect/github" class="btn btn-block btn-default">
+                            <i class="fa fa-github mr-2"></i> Đăng nhập với github
+                        </a>
+                        <span>
+                            <strong style="color: #dc3545; font-size: 80%;"><?= Session::get('error'); ?></strong>
+                        </span>
                     </div>
-
+                    
                     <p class="mb-1">
                         <a href="/"><span class="fa fa-home"></span> Trang chủ</a>
                     </p>

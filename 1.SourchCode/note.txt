@@ -1,8 +1,23 @@
-# social login
+# key for .env login
 FACEBOOK_APP_ID = 492508421245223
 FACEBOOK_APP_SECRET = 46a0841bd6a5c96963cc982e87b2a87e
 FACEBOOK_APP_CALLBACK_URL = http://localhost:8000/callback/facebook
 
-GOOGLE_APP_ID = 1040020800100-rn3gpljutsh88o778vupe4p8vh7lh0q9.apps.googleusercontent.com
-GOOGLE_APP_SECRET = pMnwmekeeHWv1SX7ZyqIq29n
+GOOGLE_APP_ID = 1040020800100-a2vtr6b93rb3e5sr5cof80qslbl7m39f.apps.googleusercontent.com
+GOOGLE_APP_SECRET = ezOyp_zOLWJa87pgK2dHYnCZ
 GOOGLE_APP_CALLBACK_URL = http://localhost:8000/callback/google
+
+GITHUB_APP_ID = 2a48ed1efa585ba1a271
+GITHUB_APP_SECRET = 2b436718743ab19e9fae3f2be9065bbe5fe7219b
+GITHUB_APP_CALLBACK_URL = http://localhost:8000/callback/github
+
+#social login
+https://learninglaravel.net/login-with-google-in-laravel-using-socialite
+https://www.youtube.com/watch?v=P5OwW5cVwJw
+https://viblo.asia/p/laravel-social-login-63vKjpNdl2R
+
+#datatable server side
+https://shareurcodes.com/blog/laravel%20datatables%20server%20side%20processing
+
+#menu da cap
+https://vietpro.net.vn/laravel-project-a-z-18-xay-dung-menu-de-qui-va-xoa-danh-muc.html

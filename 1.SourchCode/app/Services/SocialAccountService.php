@@ -10,7 +10,6 @@ class SocialAccountService
 {
     public static function createOrGetUser(ProviderUser $providerUser, $social)
     {
-
         $account = SocialAccount::whereProvider($social)
             ->whereProviderUserId($providerUser->getId())
             ->first();
@@ -29,8 +28,8 @@ class SocialAccountService
 
                 $user = User::create([
                     'email' => $email,
-                    'name' => $providerUser->getName(),
-                    'password' => $providerUser->getName(),
+                    'name' => $providerUser->getName() ?? $providerUser->getNickname(),
+                    'password' => $providerUser->getName() ?? $providerUser->getNickname(),
                     'user_permission_id' => 3,
                 ]);
             }
@@ -40,9 +39,6 @@ class SocialAccountService
                 'provider_user_id' => $providerUser->getId(),
                 'provider' => $social,
             ]);
-            // echo "<pre>";print_r($providerUser->getId());exit;
-            // $account->user()->associate($user);
-            // $account->save();
             return $user;
         }
     }
