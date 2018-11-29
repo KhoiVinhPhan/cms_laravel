@@ -33,7 +33,24 @@ class ArticleController extends Controller
     public function category()
     {
         $categorys = $this->articleService->category();
+        $abc = $this->menuParrent($categorys, 0, 0);
+        echo "<pre>";print_r($abc);exit;
         return view('backend.article.category', compact('categorys'));
+    }
+
+    public function menuParrent($data,$parent, $level)
+    {
+        $arr = [];
+        foreach ($data as $key => $value) {
+            if ($value->parrent_id == $parent) {
+                $arr[$key] = $data[$key];
+                $arr[$key]->level = $level;
+                // $arr[$key]->khoivinh = $value->category_article_id;
+                $arr[] = $this->menuParrent($data, $value->category_article_id, $level+1);
+            }
+        }
+
+        return $arr;
     }
 
     public function createCategory()
