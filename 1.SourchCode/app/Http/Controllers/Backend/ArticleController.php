@@ -46,10 +46,10 @@ class ArticleController extends Controller
                 $arr[$key] = $data[$key];
                 $arr[$key]->level = $level;
                 // $arr[$key]->khoivinh = $value->category_article_id;
-                $arr[] = $this->menuParrent($data, $value->category_article_id, $level+1);
+                $this->menuParrent($data, $value->category_article_id, $level+1);
             }
         }
-
+        // echo json_encode($arr);
         return $arr;
     }
 

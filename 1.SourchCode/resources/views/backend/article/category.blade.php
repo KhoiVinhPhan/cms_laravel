@@ -62,11 +62,9 @@
                     <tbody>
                         <form action="" id="" method="POST" accept-charset="utf-8">
                         <?php
-                            menuParent($categorys,0,0);
-                            function menuParent($data,$parent, $level){
-                                $stt = 0;
+                            menuParent($categorys, 0, 0);
+                            function menuParent($data, $parent, $level){
                                 foreach($data as $value){
-                                    $stt++;
                                     if($value->parrent_id==$parent){ ?>
                                         <tr>
                                             <td width="5%"><input type="checkbox" value="{{ $value->category_article_id }}" name="category_id[]"></td>
