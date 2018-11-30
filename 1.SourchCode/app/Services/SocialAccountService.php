@@ -21,23 +21,23 @@ class SocialAccountService
             $email = $providerUser->getEmail() ?? $providerUser->getNickname();
             $account = new SocialAccount([
                 'provider_user_id' => $providerUser->getId(),
-                'provider' => $social
+                'provider'         => $social
             ]);
             $user = User::whereEmail($email)->first();
             if (!$user) {
 
                 $user = User::create([
-                    'email' => $email,
-                    'name' => $providerUser->getName() ?? $providerUser->getNickname(),
-                    'password' => $providerUser->getName() ?? $providerUser->getNickname(),
+                    'email'              => $email,
+                    'name'               => $providerUser->getName() ?? $providerUser->getNickname(),
+                    'password'           => $providerUser->getName() ?? $providerUser->getNickname(),
                     'user_permission_id' => 3,
                 ]);
             }
 
             SocialAccount::create([
-                'user_id' => $user->user_id,
+                'user_id'          => $user->user_id,
                 'provider_user_id' => $providerUser->getId(),
-                'provider' => $social,
+                'provider'         => $social,
             ]);
             return $user;
         }
