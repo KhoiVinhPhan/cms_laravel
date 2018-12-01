@@ -30,7 +30,9 @@
                         <ul class="nav nav-pills ml-auto p-2">
                             <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">Logo</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">Thêm</a>
+                            <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">Thông tin hệ thống</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#tab_3" data-toggle="tab">Thêm</a>
                             </li>
                         </ul>
                     </div>
@@ -54,6 +56,19 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tab_2">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Tên</label>
+                                            <input type="text" name="name" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Địa chỉ</label>
+                                            <input type="text" name="name" class="form-control">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="tab-pane" id="tab_3">
                                     Thêm
                                 </div>
                             </div>
