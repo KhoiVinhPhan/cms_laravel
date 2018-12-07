@@ -30,6 +30,12 @@ class ArticleController extends Controller
         return view('backend.article.create');
     }
 
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        echo "<pre>";print_r($input);exit;
+    }
+
     public function category()
     {
         $categorys = $this->articleService->category();

@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="{{ asset('adminLTE3/plugins/select2/select2.min.css') }}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('adminLTE3/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+    <!-- bootstrap toogle master -->
+    <link href="{{ asset('bootstrap-toggle-master/css/bootstrap-toggle.min.css') }}" rel="stylesheet">
     <!-- Notification -->
     <link href="{{ asset('toastr/build/toastr.css') }}" rel="stylesheet"/>
     <!-- app-backend -->
@@ -411,6 +413,8 @@
     <script src="{{ asset('adminLTE3/plugins/select2/select2.full.min.js') }}"></script>
     <!-- Bootstrap WYSIHTML5 -->
     <script src="{{ asset('adminLTE3/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+    <!-- bootstrap toogle master -->
+    <script src="{{ asset('bootstrap-toggle-master/js/bootstrap-toggle.min.js') }}"></script>
     <!-- jquery-validate -->
     <script src="{{ asset('jquery-validation/dist/jquery.validate.js') }}"></script>
     <!-- Notification -->

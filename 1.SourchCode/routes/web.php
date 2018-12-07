@@ -77,13 +77,14 @@ Route::group(['middleware' => 'customer', 'prefix' => 'manager', 'namespace'=>'B
 
     //article
     Route::get('article', 'ArticleController@index')->name('indexArticle');
+    Route::post('article', 'ArticleController@allArticle' )->name('allArticle');
     Route::get('article/create', 'ArticleController@create')->name('createArticle');
+    Route::post('article/create', 'ArticleController@store' )->name('storeArticle');
     Route::get('article/category', 'ArticleController@category')->name('categoryArticle');
     Route::get('article/category/create', 'ArticleController@createCategory')->name('createCategory');
     Route::post('article/category/store', 'ArticleController@storeCategory')->name('storeCategory');
     Route::get('article/category/{id}/edit', 'ArticleController@editCategory')->name('editCategory');
     Route::post('article/category/update', 'ArticleController@updateCategory')->name('updateCategory');
 
-    Route::post('article', 'ArticleController@allArticle' )->name('allArticle');
 });
 
