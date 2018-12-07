@@ -33,7 +33,13 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        echo "<pre>";print_r($input);exit;
+        if($this->articleService->store($input)){
+            Session::flash('success', 'Thêm bài viết thành công');
+            return redirect()->route('indexArticle');
+        }else{
+            Session::flash('error', 'Thêm bài viết không thành công');
+            return redirect()->route('createArticle');
+        }
     }
 
     public function category()
@@ -98,76 +104,8 @@ class ArticleController extends Controller
 
     public function allArticle(Request $request)
     {
-        $input = $request->all();
-
-        $totalData = Articles::count();
-        $totalFiltered = $totalData; 
-        // echo "<pre>";print_r($input);exit;
-        $columns = array( 
-                            0 => 'article_id', 
-                            1 => 'title',
-                            2 => 'slug',
-                            3 => 'description',
-                            4 => 'article_id',
-                            5 => 'article_id',
-                        );
-
-        $limit = $request->input('length');
-        $start = $request->input('start');
-        $order = $columns[$request->input('order.0.column')];
-        $dir = $request->input('order.0.dir');
-        // echo "<pre>";print_r($dir);exit;
-
-        if(empty($request->input('search.value')))
-        {            
-            $posts = Articles::offset($start)
-                         ->limit($limit)
-                         ->orderBy($order,$dir)
-                         ->get();
-        }
-        else {
-            $search = $request->input('search.value'); 
-
-            $posts =  Articles::where('article_id','LIKE',"%{$search}%")
-                            ->orWhere('title', 'LIKE',"%{$search}%")
-                            ->orWhere('slug', 'LIKE',"%{$search}%")
-                            ->offset($start)
-                            ->limit($limit)
-                            ->orderBy($order,$dir)
-                            ->get();
-
-            $totalFiltered = Articles::where('article_id','LIKE',"%{$search}%")
-                             ->orWhere('title', 'LIKE',"%{$search}%")
-                             ->orWhere('slug', 'LIKE',"%{$search}%")
-                             ->count();
-        }
-
-
-        $data = array();
-        if(!empty($posts))
-        {
-            $stt = 0;
-            foreach ($posts as $post)
-            {
-                $stt++;
-                $arr['article_id'] = $post->article_id;
-                $arr['title'] = $post->title;
-                $arr['slug'] = $post->slug;
-                $arr['description'] = $post->description;
-                $arr['options'] = "<input type='button' class='btn btn-info btn block btn-flat' value='chi tiet'>";
-                $arr['stt'] = $stt;
-                
-                $data[] = $arr;
-            }
-        }
-
-        $json_data = array(
-                        "draw"            => intval($request->input('draw')),  
-                        "recordsTotal"    => intval($totalData), 
-                        "recordsFiltered" => intval($totalData), 
-                        "data"            => $data
-                    );
-        echo json_encode($json_data);
+        $data = $this->articleService->allArticle($request);
+        echo $data;
     }
     
 }

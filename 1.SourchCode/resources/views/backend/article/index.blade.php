@@ -33,29 +33,24 @@
 <div class="container-fluid">
     <div class="col-sm-12">
         <div class="card">
-           
-            <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
-                <table id="example2" class="table table-bordered table-hover">
+                <table id="articles" class="table table-bordered table-hover">
                     <thead>
-                        <!-- <th>stt</th> -->
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>slug</th>
-                        <th>des</th>
-                        <th>action</th>
-                        <th>stt</th>
+                        <th width="5%">#</th>
+                        <th width="15%">Hình ảnh</th>
+                        <th>Tiêu đề</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
                     </thead>    
                 </table>
             </div>
-            <!-- /.card-body -->
         </div>
     </div>
 </div>
 
 <script>
     $(document).ready(function() {
-        $('#example2').DataTable({
+        $('#articles').DataTable({
             "processing": true,
             "serverSide": true,
             "ajax":{
@@ -65,18 +60,14 @@
                         "data":{ _token: "{{csrf_token()}}"}
                    },
             "columns": [
-                // { "data": "stt" },
-                { "data": "article_id" },
-                { "data": "title" },
-                { "data": "slug" },
-                { "data": "description" },
-                { "data": "options" },
                 { "data": "stt" },
+                { "data": "avatar" },
+                { "data": "title" },
+                { "data": "status" },
+                { "data": "options" },
             ]    
 
         });
-    } );
-
-
+    });
 </script>
 @endsection

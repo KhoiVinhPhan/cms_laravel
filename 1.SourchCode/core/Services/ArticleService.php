@@ -28,4 +28,14 @@ class ArticleService implements ArticleServiceContract
         return $this->articleRepository->updateCategory($input);
     }
 
+    public function store($input)
+    {
+        return $this->articleRepository->store($input);
+    }
+
+    public function allArticle($request)
+    {
+        return $this->articleRepository->allArticle($request);
+    }
+
 }
