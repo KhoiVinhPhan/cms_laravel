@@ -8,5 +8,6 @@ interface ArticleRepositoryContract
     public function storeCategory($input);
     public function updateCategory($input);
     public function store($input);
+    public function changeStatus($input);
     public function allArticle($request);
 }

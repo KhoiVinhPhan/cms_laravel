@@ -85,6 +85,6 @@ Route::group(['middleware' => 'customer', 'prefix' => 'manager', 'namespace'=>'B
     Route::post('article/category/store', 'ArticleController@storeCategory')->name('storeCategory');
     Route::get('article/category/{id}/edit', 'ArticleController@editCategory')->name('editCategory');
     Route::post('article/category/update', 'ArticleController@updateCategory')->name('updateCategory');
-
+    Route::post('article/change-status', 'ArticleController@changeStatus' )->name('changeStatus');
 });
 

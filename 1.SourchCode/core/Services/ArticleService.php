@@ -33,6 +33,11 @@ class ArticleService implements ArticleServiceContract
         return $this->articleRepository->store($input);
     }
 
+    public function changeStatus($input)
+    {
+        return $this->articleRepository->changeStatus($input);
+    }
+
     public function allArticle($request)
     {
         return $this->articleRepository->allArticle($request);

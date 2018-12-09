@@ -107,5 +107,15 @@ class ArticleController extends Controller
         $data = $this->articleService->allArticle($request);
         echo $data;
     }
+
+    public function changeStatus(Request $request)
+    {
+        $input = $request->all();
+        if ($this->articleService->changeStatus($input)) {
+            return "success";
+        } else {
+            return "error";
+        }
+    }
     
 }

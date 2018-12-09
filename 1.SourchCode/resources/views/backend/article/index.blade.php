@@ -7,7 +7,6 @@
             <div class="col-sm-6">
                 <h1 class="m-0 text-dark">Danh sách bài viết</h1>
             </div>
-            <!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
@@ -15,13 +14,9 @@
                     <li class="breadcrumb-item active">Danh sách bài viết</li>
                 </ol>
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
 </div>
-<!-- /.content-header -->
 
 <div class="form-group container-fluid">
     <div class="col-sm-12">
@@ -38,9 +33,9 @@
                     <thead>
                         <th width="5%">#</th>
                         <th width="15%">Hình ảnh</th>
-                        <th>Tiêu đề</th>
-                        <th>Trạng thái</th>
-                        <th>Hành động</th>
+                        <th width="45%%">Tiêu đề</th>
+                        <th width="15%">Trạng thái</th>
+                        <th width="15%">Hành động</th>
                     </thead>    
                 </table>
             </div>
@@ -50,6 +45,7 @@
 
 <script>
     $(document).ready(function() {
+        //datatable server side: articles
         $('#articles').DataTable({
             "processing": true,
             "serverSide": true,
@@ -66,8 +62,38 @@
                 { "data": "status" },
                 { "data": "options" },
             ]    
-
         });
     });
+
+    //change status articles
+    function changeStatus(article_id){
+        var checked = $("#status" + article_id).is(":checked");
+        if (checked == true) {
+            var status = 1;
+        } else {
+            var status = 0;
+        }
+        var data = {
+                status: status,
+                article_id : article_id
+            }
+        $.ajax({
+            type: 'POST',
+            url: '{{route("changeStatus")}}',
+            data: {'data': data, '_token': '{{ csrf_token() }}'},
+            success: function(result){
+                console.log(result);
+                //message
+                // if(result == 'success')
+                //     toastr.success('Thay đổi giao diện thành công');
+                // else
+                //     toastr.error('Thay đổi giao diện không thành công');
+            },
+            error: function(result){
+                console.log(result);
+                // toastr.error('Lỗi hệ thống');
+            }
+        });
+    }
 </script>
 @endsection

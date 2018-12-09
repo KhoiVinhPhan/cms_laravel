@@ -59,17 +59,38 @@ class ArticleRepository implements ArticleRepositoryContract
     //create articles
     public function store($input)
     {
+        //echo "<pre>";print_r($input['status']);exit;
         DB::beginTransaction();
         try{
             $data = array(
                 'title'         => $input['title'],
                 'description'   => $input['description'],
                 'details'       => $input['details'],
-                'status'        => (empty($input['status'])) ? 1 : 0,
+                'status'        => (!empty($input['status'])) ? 1 : 0,
                 'avatar'        => $input['avatar'],
                 'user_id_maked' => Auth::user()->user_id
             );
             Articles::create($data);
+            DB::commit();
+            return true;
+        } catch(\Exception $e) {
+            DB::rollback();
+            return false;
+        }
+    }
+
+    //change status article
+    public function changeStatus($input)
+    {
+        DB::beginTransaction();
+        try{
+            DB::table('articles')
+                ->where('article_id', '=', $input['data']['article_id'])
+                ->update([
+                    'status' => $input['data']['status'],
+                    'user_id_updated' => Auth::user()->user_id,
+                    'updated_at' => now()
+                ]);
             DB::commit();
             return true;
         } catch(\Exception $e) {
@@ -120,17 +141,30 @@ class ArticleRepository implements ArticleRepositoryContract
             $stt = 0;
             foreach ($posts as $post) {
                 $stt++;
+
+                //kiem tra avatar
                 if (empty($post->avatar)) {
                     $avatar = '/image_default/logo.png';
                 } else {
                     $avatar = $post->avatar;
                 }
 
+                //kiem tra status
+                if ($post->status == 1) {
+                    $status = 'checked';
+                } else {
+                    $status = '';
+                }
+
                 $arr['stt'] = $stt;
                 $arr['avatar'] = '<img src="'.$avatar.'" width="100px" height="70px">';
                 $arr['title'] = $post->title;
-                $arr['status'] = "<input type='checkbox' checked data-toggle='toggle' data-on='Công khai' data-off='Lưu nháp' data-onstyle='success' data-offstyle='default' data-size='small' name='status'>";
-                $arr['options'] = '<input type="button" class="btn btn-info btn block btn-flat btn-sm" value="chi tiet">';
+                $arr['status'] = '
+                        <label class="switch">
+                            <input type="checkbox" '.$status.' onclick="changeStatus('.$post->article_id.')" id="status'.$post->article_id.'">
+                            <span class="slider round"></span>
+                        </label>';
+                $arr['options'] = '<input type="button" class="btn btn-info btn block btn-flat btn-sm btn-block" value="chi tiet">';
                 $data[] = $arr;
             }
         }
