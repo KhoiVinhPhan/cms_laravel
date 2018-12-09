@@ -158,7 +158,7 @@ class ArticleRepository implements ArticleRepositoryContract
 
                 $arr['stt'] = $stt;
                 $arr['avatar'] = '<img src="'.$avatar.'" width="100px" height="70px">';
-                $arr['title'] = $post->title;
+                $arr['title'] = $post->title.'<br>'.date('d-m-Y', strtotime($post->created_at));
                 $arr['status'] = '
                         <label class="switch">
                             <input type="checkbox" '.$status.' onclick="changeStatus('.$post->article_id.')" id="status'.$post->article_id.'">

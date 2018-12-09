@@ -42,11 +42,37 @@
         </div>
     </div>
 </div>
-
+<?php 
+    use App\Models\SystemPagination; 
+    $pagination = SystemPagination::where('user_id', Auth::user()->user_id)->first();
+    if (empty($pagination)) {
+        $pageLength = 5;
+    } else {
+        $pageLength = $pagination['pagination_backend'];
+    }
+?>
 <script>
     $(document).ready(function() {
         //datatable server side: articles
         $('#articles').DataTable({
+            "searching"     : true,
+            "lengthChange"  : true,
+            "bInfo"         : true,
+            "pageLength"    : '<?php echo $pageLength; ?>',
+            "bPaginate"     : true,
+            "language": {
+                    "oPaginate": {
+                        "sPrevious" : "&laquo;",
+                        "sNext"     : "&raquo;",
+                    },
+                    "lengthMenu"    : "Thể hiện _MENU_ bản ghi cho mỗi trang",
+                    "zeroRecords"   : "Không tìm thấy dữ liệu",
+                    "info"          : "Danh sách: _START_ ~ _END_ của _MAX_ dữ liệu",
+                    "infoEmpty"     : "Không có dữ liệu",
+                    "infoFiltered"  : "(được lọc từ _MAX_ bản ghi)",
+                    "search"        : "Tìm kiếm:"
+                },
+            "order": [[ 0, "desc" ]],
             "processing": true,
             "serverSide": true,
             "ajax":{
@@ -83,15 +109,9 @@
             data: {'data': data, '_token': '{{ csrf_token() }}'},
             success: function(result){
                 console.log(result);
-                //message
-                // if(result == 'success')
-                //     toastr.success('Thay đổi giao diện thành công');
-                // else
-                //     toastr.error('Thay đổi giao diện không thành công');
             },
             error: function(result){
                 console.log(result);
-                // toastr.error('Lỗi hệ thống');
             }
         });
     }
