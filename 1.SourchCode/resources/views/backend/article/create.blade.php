@@ -53,6 +53,7 @@
                                 <div class="tab-pane" id="tab_2">
                                     <div class="row">
                                         <div class="col-sm-5">
+                                            <label>Danh mục:</label>
                                             <select id="categorys" ondblclick="choiceCategory()" multiple class="form-control" style="width: 100%;">
                                                <?php
                                                     menuParent($categorys, 0, 0);
@@ -69,14 +70,13 @@
                                         </div>
                                         <div class="col-sm-1">
                                             <input onclick="insertCategoryArr()" type="button" class="btn btn-outline-info btn-sm btn-block" value=">">
-                                            <input type="button" class="btn btn-outline-info btn-sm btn-block" value=">>">
+                                            <input onclick="insertAllCategoryArr()" type="button" class="btn btn-outline-info btn-sm btn-block" value=">>">
                                         </div>
                                         <div class="col-sm-6">
                                             <table class="table" id="indexCategoryChoie">
                                                 <tbody>
                                                 </tbody>
                                             </table>
-                                            
                                         </div>
                                     </div>
                                 </div>

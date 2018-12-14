@@ -34,6 +34,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        echo "<pre>";print_r($input);exit;
         if($this->articleService->store($input)){
             Session::flash('success', 'Thêm bài viết thành công');
             return redirect()->route('indexArticle');
