@@ -19,18 +19,14 @@
             <div class="col-sm-6">
                 <h1 class="m-0 text-dark">Tổng quát</h1>
             </div>
-            <!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
                     <li class="breadcrumb-item active">Cài đặt</li>
                 </ol>
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
 <section class="content">

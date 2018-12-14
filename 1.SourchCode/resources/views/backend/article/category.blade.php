@@ -70,7 +70,7 @@
                                             <td width="5%"><input type="checkbox" value="{{ $value->category_article_id }}" name="category_id[]"></td>
                                             <th><a href="{{route('editCategory', ['id'=>$value->category_article_id])}}">{{str_repeat('----', $level).$value->name}}</a></th>
                                         </tr> 
-                                    <?php menuParent($data,$value->category_article_id, $level+1);
+                                        <?php menuParent($data,$value->category_article_id, $level+1);
                                     }
                                 }
                             }

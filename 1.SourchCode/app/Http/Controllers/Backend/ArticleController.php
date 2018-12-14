@@ -27,7 +27,8 @@ class ArticleController extends Controller
 
     public function create()
     {
-        return view('backend.article.create');
+        $categorys = $this->articleService->category();
+        return view('backend.article.create', compact('categorys'));
     }
 
     public function store(Request $request)

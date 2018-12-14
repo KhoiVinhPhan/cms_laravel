@@ -119,21 +119,22 @@ class ArticleRepository implements ArticleRepositoryContract
         if (empty($request->input('search.value'))) {            
             $posts = Articles::offset($start)
                         ->limit($limit)
+                        ->where('user_id_maked', '=', Auth::user()->user_id)
                         ->orderBy($order,$dir)
                         ->get();
         } else {
             $search = $request->input('search.value'); 
 
-            $posts =  Articles::where('article_id','LIKE',"%{$search}%")
-                            ->orWhere('title', 'LIKE',"%{$search}%")
-                            ->offset($start)
-                            ->limit($limit)
-                            ->orderBy($order,$dir)
-                            ->get();
+            $posts = Articles::where('title', 'LIKE',"%{$search}%")
+                        ->offset($start)
+                        ->limit($limit)
+                        ->where('user_id_maked', '=', Auth::user()->user_id)
+                        ->orderBy($order,$dir)
+                        ->get();
 
-            $totalFiltered = Articles::where('article_id','LIKE',"%{$search}%")
-                            ->orWhere('title', 'LIKE',"%{$search}%")
-                            ->count();
+            $totalFiltered = Articles::where('title', 'LIKE',"%{$search}%")
+                                ->where('user_id_maked', '=', Auth::user()->user_id)
+                                ->count();
         }
 
         $data = array();
