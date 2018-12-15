@@ -5,20 +5,20 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Thêm mới bài viết</h1>
+                <h1 class="m-0 text-dark">Chỉnh sửa bài viết</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
-                    <li class="breadcrumb-item active">Bài viết</li>
-                    <li class="breadcrumb-item active">Thêm mới bài viết</li>
+                    <li class="breadcrumb-item"><a href="{{route('indexBackend')}}">Trang chủ</a></li>
+                    <li class="breadcrumb-item active"><a href="{{route('indexArticle')}}">Bài viết</a></li>
+                    <li class="breadcrumb-item active">Chỉnh sửa bài viết</li>
                 </ol>
             </div>
         </div>
     </div>
 </div>
 <!-- End content-header -->
-<form action="{{ route('storeArticle') }}" method="POST" accept-charset="utf-8" id="formArticleCreate" enctype="multipart/form-data">
+<form action="" method="POST" accept-charset="utf-8" id="formArticleEdit" enctype="multipart/form-data">
     @csrf
     <section class="content">
         <div class="container-fluid">
@@ -37,15 +37,15 @@
                                 <div class="tab-pane active" id="tab_1">
                                     <div class="form-group">
                                         <label>Tiêu đề:</label><span style="color:red"> *</span>
-                                        <input type="text" name="title" id="title" class="form-control" value="">
+                                        <input type="text" name="title" id="title" class="form-control" value="{{$article->title}}">
                                     </div>
                                     <div class="form-group">
                                         <label>Mô tả:</label>
-                                        <textarea name="description" class="form-control" rows="3"></textarea>
+                                        <textarea name="description" class="form-control" rows="3">{{$article->description}}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Chi tiết:</label>
-                                        <textarea name="details" class="form-control timymce" id="ckeditor"></textarea>
+                                        <textarea name="details" class="form-control timymce" id="ckeditor">{{$article->details}}</textarea>
                                     </div>
 
                                 </div>
@@ -81,7 +81,7 @@
                                 </div>
 
                                 <div class="tab-pane" id="tab_3">
-                                    Thông tin thêm
+                                    <a href="{{route('editArticle', ['article_id'=>5])}}" title="">fsdsdfg</a>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                             <h3 class="card-title">Xử lý</h3>
                         </div>
                         <div class="card-body">
-                            <input type="submit" class="btn btn-success btn-flat btn-block btn-sm" value="Thêm mới">
+                            <input type="submit" class="btn btn-info btn-flat btn-block btn-sm" value="Chỉnh sửa">
                         </div>
                     </div>
 
@@ -102,24 +102,7 @@
                             <h3 class="card-title">Trạng thái</h3>
                         </div>
                         <div class="card-body">
-                            <input type="checkbox" checked data-toggle="toggle" data-on="Công khai" data-off="Lưu nháp" data-onstyle="success" data-offstyle="default" data-size="small" name="status">
-                        </div>
-                    </div>
-
-                    <div class="card card-default">
-                        <div class="card-header">
-                            <h3 class="card-title">Danh mục</h3>
-                        </div>
-                        <div class="card-body">
-                            <select class="form-control select2" multiple="multiple" data-placeholder="Chọn danh mục" style="width: 100%;">
-                                <option>Alabama</option>
-                                <option>Alaska</option>
-                                <option>California</option>
-                                <option>Delaware</option>
-                                <option>Tennessee</option>
-                                <option>Texas</option>
-                                <option>Washington</option>
-                            </select>
+                            <input type="checkbox" <?php if($article->status == 1){echo "checked";} ?> data-toggle="toggle" data-on="Công khai" data-off="Lưu nháp" data-onstyle="success" data-offstyle="default" data-size="small" name="status">
                         </div>
                     </div>
 
@@ -128,8 +111,8 @@
                             <h3 class="card-title">Hình đại diện</h3>
                         </div>
                         <div class="card-body">
-                            <img src="{{ url('image_default/logo.png') }}" id="holder" style="width: 100%;height: auto">
-                            <input hidden id="thumbnail" class="form-control" type="text" name="avatar">
+                            <img src="<?php if(!empty($article->avatar)){ echo $article->avatar; }else{ echo "/image_default/logo.png"; } ?>" id="holder" style="width: 100%;height: auto">
+                            <input value="<?php if(!empty($article->avatar)){ echo $article->avatar; } ?>" hidden id="thumbnail" class="form-control" type="text" name="avatar">
                             <input type="button" id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary btn-flat btn-sm btn-block" value="Chọn hình">
                         </div>
                     </div>

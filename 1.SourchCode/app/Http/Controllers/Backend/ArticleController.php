@@ -34,7 +34,6 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        echo "<pre>";print_r($input);exit;
         if($this->articleService->store($input)){
             Session::flash('success', 'Thêm bài viết thành công');
             return redirect()->route('indexArticle');
@@ -42,6 +41,13 @@ class ArticleController extends Controller
             Session::flash('error', 'Thêm bài viết không thành công');
             return redirect()->route('createArticle');
         }
+    }
+
+    public function edit($article_id)
+    {
+        $categorys = $this->articleService->category();
+        $article   = $this->articleService->getDataAricle($article_id);
+        return view('backend.article.edit', compact('categorys', 'article'));
     }
 
     public function category()

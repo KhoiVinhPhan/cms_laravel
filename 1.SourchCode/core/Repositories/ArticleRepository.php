@@ -59,9 +59,9 @@ class ArticleRepository implements ArticleRepositoryContract
     //create articles
     public function store($input)
     {
-        //echo "<pre>";print_r($input['status']);exit;
         DB::beginTransaction();
         try{
+            //create article
             $data = array(
                 'title'         => $input['title'],
                 'description'   => $input['description'],
@@ -70,13 +70,48 @@ class ArticleRepository implements ArticleRepositoryContract
                 'avatar'        => $input['avatar'],
                 'user_id_maked' => Auth::user()->user_id
             );
-            Articles::create($data);
+            $article_id = Articles::create($data)->article_id;
+
+            //insert category for article
+            $categoryId = $input['categoryId'];
+            if ( !empty($categoryId) ) {
+                foreach ($categoryId as $key => $item) {
+                    DB::table('article_multi_cate')->insert([
+                        'article_id'          => $article_id,
+                        'category_article_id' => $categoryId[$key]
+                    ]);
+                }
+            }
+
             DB::commit();
             return true;
         } catch(\Exception $e) {
             DB::rollback();
             return false;
         }
+    }
+
+    // get data article with id
+    public function getDataAricle($article)
+    {
+        $article = DB::table('articles')
+                        ->select(
+                            'articles.*',
+                            DB::raw("group_concat(category_article.category_article_id) as categoryId"),
+                            DB::raw("group_concat(category_article.name) as categoryName")
+                        )
+                        ->leftjoin('article_multi_cate', 'article_multi_cate.article_id', '=', 'articles.article_id')
+                        ->leftjoin('category_article', 'category_article.category_article_id', '=', 'article_multi_cate.category_article_id')
+                        ->where('articles.article_id', $article)
+                        ->groupBy('articles.article_id')
+                        ->first();
+        if ( !empty($article->categoryId) ) {
+            $categoryIdArr   = explode(',',$article->categoryId);
+            $categoryNameArr = explode(',',$article->categoryName);
+            $article->categoryIdArr   = $categoryIdArr;
+            $article->categoryNameArr = $categoryNameArr;
+        }
+        return $article;
     }
 
     //change status article
@@ -165,7 +200,7 @@ class ArticleRepository implements ArticleRepositoryContract
                             <input type="checkbox" '.$status.' onclick="changeStatus('.$post->article_id.')" id="status'.$post->article_id.'">
                             <span class="slider round"></span>
                         </label>';
-                $arr['options'] = '<input type="button" class="btn btn-info btn block btn-flat btn-sm btn-block" value="chi tiet">';
+                $arr['options'] = '<a href="/manager/article/'.$post->article_id.'/edit" ><input type="button" class="btn btn-info btn block btn-flat btn-sm btn-block" value="chi tiet"></a>';
                 $data[] = $arr;
             }
         }

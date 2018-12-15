@@ -10,4 +10,5 @@ interface ArticleServiceContract
     public function store($input);
     public function changeStatus($input);
     public function allArticle($request);
+    public function getDataAricle($article);
 }
