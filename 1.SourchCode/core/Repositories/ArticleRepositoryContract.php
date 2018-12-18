@@ -11,4 +11,5 @@ interface ArticleRepositoryContract
     public function changeStatus($input);
     public function allArticle($request);
     public function getDataAricle($article);
+    public function update($input);
 }

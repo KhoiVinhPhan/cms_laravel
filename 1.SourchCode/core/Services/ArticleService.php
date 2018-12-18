@@ -48,4 +48,9 @@ class ArticleService implements ArticleServiceContract
         return $this->articleRepository->getDataAricle($article);
     }
 
+    public function update($input)
+    {
+        return $this->articleRepository->update($input);
+    }
+
 }

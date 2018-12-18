@@ -47,8 +47,19 @@ class ArticleController extends Controller
     {
         $categorys = $this->articleService->category();
         $article   = $this->articleService->getDataAricle($article_id);
-        // echo "<pre>";print_r($article);exit;
         return view('backend.article.edit', compact('categorys', 'article'));
+    }
+
+    public function update(Request $request)
+    {
+        $input = $request->all();
+        if($this->articleService->update($input)){
+            Session::flash('success', 'Cập nhật bài viết thành công');
+            return redirect()->route('indexArticle');
+        }else{
+            Session::flash('error', 'Cập nhật bài viết không thành công');
+            return redirect()->route('indexArticle');
+        }
     }
 
     public function category()

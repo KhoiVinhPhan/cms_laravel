@@ -73,11 +73,47 @@ class ArticleRepository implements ArticleRepositoryContract
             $article_id = Articles::create($data)->article_id;
 
             //insert category for article
-            $categoryId = $input['categoryId'];
-            if ( !empty($categoryId) ) {
+            if ( isset($input['categoryId']) ) {
+                $categoryId = $input['categoryId'];
                 foreach ($categoryId as $key => $item) {
                     DB::table('article_multi_cate')->insert([
                         'article_id'          => $article_id,
+                        'category_article_id' => $categoryId[$key]
+                    ]);
+                }
+            }
+
+            DB::commit();
+            return true;
+        } catch(\Exception $e) {
+            DB::rollback();
+            return false;
+        }
+    }
+
+    //update article
+    public function update($input)
+    {
+        DB::beginTransaction();
+        try{
+            //update article
+            $data = array(
+                'title'         => $input['title'],
+                'description'   => $input['description'],
+                'details'       => $input['details'],
+                'status'        => (!empty($input['status'])) ? 1 : 0,
+                'avatar'        => $input['avatar'],
+                'user_id_updated' => Auth::user()->user_id
+            );
+            Articles::find($input['article_id'])->update($data);
+
+            //update category for article
+            DB::table('article_multi_cate')->where('article_id', $input['article_id'])->delete();
+            if ( isset($input['categoryId']) ) {
+                $categoryId = $input['categoryId'];
+                foreach ($categoryId as $key => $item) {
+                    DB::table('article_multi_cate')->insert([
+                        'article_id'          => $input['article_id'],
                         'category_article_id' => $categoryId[$key]
                     ]);
                 }
@@ -200,7 +236,9 @@ class ArticleRepository implements ArticleRepositoryContract
                             <input type="checkbox" '.$status.' onclick="changeStatus('.$post->article_id.')" id="status'.$post->article_id.'">
                             <span class="slider round"></span>
                         </label>';
-                $arr['options'] = '<a href="/manager/article/'.$post->article_id.'/edit" ><input type="button" class="btn btn-info btn block btn-flat btn-sm btn-block" value="chi tiet"></a>';
+                $arr['options'] = '
+                    <a href="/manager/article/'.$post->article_id.'/edit" ><input type="button" class="btn btn-info btn block btn-flat btn-sm btn-block" value="Chỉnh sửa"></a>
+                    <a href="javascript:;" ><input type="button" class="btn btn-danger btn block btn-flat btn-sm btn-block" value="Xóa"></a>';
                 $data[] = $arr;
             }
         }

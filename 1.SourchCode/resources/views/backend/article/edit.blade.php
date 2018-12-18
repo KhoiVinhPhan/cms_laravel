@@ -18,7 +18,7 @@
     </div>
 </div>
 <!-- End content-header -->
-<form action="" method="POST" accept-charset="utf-8" id="formArticleEdit" enctype="multipart/form-data">
+<form action="{{route('updateArticle')}}" method="POST" accept-charset="utf-8" id="formArticleEdit" enctype="multipart/form-data">
     @csrf
     <section class="content">
         <div class="container-fluid">
@@ -127,6 +127,7 @@
             @endforeach
         </div>
     @endif
+    <input hidden type="text" name="article_id" value="{{$article->article_id}}">
 </form>
 <script>
     //choice filemanger image
