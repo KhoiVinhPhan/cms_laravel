@@ -47,6 +47,7 @@ class ArticleController extends Controller
     {
         $categorys = $this->articleService->category();
         $article   = $this->articleService->getDataAricle($article_id);
+        // echo "<pre>";print_r($article);exit;
         return view('backend.article.edit', compact('categorys', 'article'));
     }
 

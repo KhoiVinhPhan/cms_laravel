@@ -5,6 +5,7 @@ return [
     'menu-left-control' => 'Control panel',
     'menu-left-blog' => 'Article',
     'menu-left-blog-list' => 'List of articles',
+    'menu-left-create' => 'Create',
     'menu-left-blog-category' => 'Category',
     'menu-left-user' => 'Account Information',
     'menu-left-config' => 'Setting Personnal',

@@ -5,6 +5,7 @@ return [
     'menu-left-control' => 'Bảng điều khiển',
     'menu-left-blog' => 'Bài viết',
     'menu-left-blog-list' => 'Danh sách bài viết',
+    'menu-left-create' => 'Thêm mới',
     'menu-left-blog-category' => 'Danh mục',
     'menu-left-user' => 'Thông tin tài khoản',
     'menu-left-config' => 'Cài đặt cá nhân',

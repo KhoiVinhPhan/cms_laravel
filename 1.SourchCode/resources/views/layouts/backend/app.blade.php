@@ -207,8 +207,8 @@
                                     <p>{{ trans('language.menu-left-control') }}</p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview {{ request()->is('manager/article') || request()->is('manager/article/category') ? 'menu-open' : '' }}">
-                                <a href="#" class="nav-link {{ request()->is('manager/article') || request()->is('manager/article/category') ? 'active' : '' }}">
+                            <li class="nav-item has-treeview {{ request()->is('manager/article') || request()->is('manager/article/category') || request()->is('manager/article/create') ? 'menu-open' : '' }}">
+                                <a href="#" class="nav-link {{ request()->is('manager/article') || request()->is('manager/article/category') || request()->is('manager/article/create') || request()->is('manager/article/*/edit') ? 'active' : '' }}">
                                     <i class="nav-icon fa fa-pencil-square-o"></i>
                                     <p>
                                         {{ trans('language.menu-left-blog') }}
@@ -220,6 +220,12 @@
                                         <a href="{{route('indexArticle')}}" class="nav-link {{ request()->is('manager/article') ? 'active' : '' }}">
                                             <i class="fa fa-angle-right nav-icon"></i>
                                             <p>{{ trans('language.menu-left-blog-list') }}</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('createArticle')}}" class="nav-link {{ request()->is('manager/article/create') ? 'active' : '' }}">
+                                            <i class="fa fa-angle-right nav-icon"></i>
+                                            <p>{{ trans('language.menu-left-create') }}</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">

@@ -47,13 +47,12 @@
                                         <label>Chi tiết:</label>
                                         <textarea name="details" class="form-control timymce" id="ckeditor">{{$article->details}}</textarea>
                                     </div>
-
                                 </div>
 
                                 <div class="tab-pane" id="tab_2">
                                     <div class="row">
                                         <div class="col-sm-5">
-                                            <select id="categorys" ondblclick="choiceCategory()" multiple class="form-control" style="width: 100%;">
+                                            <select id="categorys" ondblclick="insertCategoryArr()" multiple class="form-control" style="width: 100%;">
                                                <?php
                                                     menuParent($categorys, 0, 0);
                                                     function menuParent($data, $parent, $level){
@@ -121,6 +120,13 @@
             </div>
         </div>
     </section>
+    @if( !empty($article->categoryIdArr) )
+        <div id="categoryIdArr">
+            @foreach( $article->categoryIdArr as $key => $item )
+                <input hidden type="text" value="{{$article->categoryIdArr[$key]}}">
+            @endforeach
+        </div>
+    @endif
 </form>
 <script>
     //choice filemanger image

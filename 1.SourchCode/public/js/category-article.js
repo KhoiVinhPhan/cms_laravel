@@ -1,56 +1,38 @@
 $(document).ready(function(){
-	
+	showCategory();
 });
 //add category
-function insertCategoryArr() {
-	$("#categorys > option").each(function() {
-		if (this.selected) {
-			var len = $( "#indexCategoryChoie > tbody > tr" ).length + 1;
-			var text = this.text.replace(new RegExp('-', 'g'),"")
-			var html = 
-				'<tr id="group-category">'
-				+	'<td class="stt">'+len+'</td>'
-				+	'<td width="70%">'+text
-				+		'<input hidden type="input" name="categoryId[]" class="id-category" value="'+this.value+'">'
-				+	'</td>'
-				+	'<td><span class="button-delete" onclick="deleteCategory()"><a href="#">Xóa</a></span></td>'
-				+'</tr>';
-			$( "#indexCategoryChoie" ).append(html);
-			$(this).attr('disabled','disabled');
-
-			$( "#group-category" ).each(function() {
-				$(this).find("input.id-category").attr('name', 'categoryId[]');
-			} );
+function insertCategoryArr(){
+	$("#categorys > option").each(function(){
+		if (this.selected && !this.disabled) {
+			insertCategory(this);
 		}
 	});
 }
 
 //add all categories
 function insertAllCategoryArr(){
-	$("#categorys > option").each(function() {
+	$("#categorys > option").each(function(){
 		if (!this.disabled) {
-			var len = $( "#indexCategoryChoie > tbody > tr" ).length + 1;
-			var text = this.text.replace(new RegExp('-', 'g'),"")
-			var html = 
-				'<tr id="group-category">'
-				+	'<td class="stt">'+len+'</td>'
-				+	'<td width="70%">'+text
-				+		'<input hidden type="input" name="categoryId[]" class="id-category" value="'+this.value+'">'
-				+	'</td>'
-				+	'<td><span class="button-delete" onclick="deleteCategory()"><a href="#">Xóa</a></span></td>'
-				+'</tr>';
-			$( "#indexCategoryChoie" ).append(html);
-			$(this).attr('disabled','disabled');
-
-			$( "#group-category" ).each(function() {
-				$(this).find("input.id-category").attr('name', 'categoryId[]');
-			} );
+			insertCategory(this);
 		}
 	});
 }
 
+//show category
+function showCategory(){
+	$( "#categoryIdArr" ).find("input").each(function(){
+		var category_id = $(this).val();
+		$( "#categorys > option" ).each(function(){
+			if (this.value == category_id) {
+				insertCategory(this);
+			}
+		});
+	});
+}
+
 //delete category
-function deleteCategory() {
+function deleteCategory(){
 	$( "#indexCategoryChoie" ).on("click", ".button-delete", function(){
 		$(this).closest("tr#group-category").remove();
 		var value = $(this).closest("tr#group-category").find("input.id-category").val();
@@ -63,8 +45,28 @@ function deleteCategory() {
 	});
 }
 
+//insert category
+function insertCategory(element){
+	var len = $( "#indexCategoryChoie > tbody > tr" ).length + 1;
+	var text = element.text.replace(new RegExp('-', 'g'),"")
+	var html = 
+		'<tr id="group-category">'
+		+	'<td class="stt">'+len+'</td>'
+		+	'<td width="70%">'+text
+		+		'<input hidden type="input" name="categoryId[]" class="id-category" value="'+element.value+'">'
+		+	'</td>'
+		+	'<td><span class="button-delete" onclick="deleteCategory()"><a href="javascript:;">Xóa</a></span></td>'
+		+'</tr>';
+	$( "#indexCategoryChoie" ).append(html);
+	$(element).attr('disabled','disabled');
+
+	$( "#group-category" ).each(function(){
+		$(element).find("input.id-category").attr('name', 'categoryId[]');
+	});
+}
+
 //refresh stt
-function refreshStt() {
+function refreshStt(){
 	var stt = 1;
 	$( "#indexCategoryChoie > tbody > tr" ).each(function(){
 		$(this).find("td.stt").html(stt);

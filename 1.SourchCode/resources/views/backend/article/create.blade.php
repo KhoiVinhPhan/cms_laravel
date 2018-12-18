@@ -53,7 +53,7 @@
                                 <div class="tab-pane" id="tab_2">
                                     <div class="row">
                                         <div class="col-sm-5">
-                                            <select id="categorys" ondblclick="choiceCategory()" multiple class="form-control" style="width: 100%;">
+                                            <select id="categorys" ondblclick="insertCategoryArr()" multiple class="form-control" style="width: 100%;">
                                                <?php
                                                     menuParent($categorys, 0, 0);
                                                     function menuParent($data, $parent, $level){
